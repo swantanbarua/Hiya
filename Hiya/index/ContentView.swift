@@ -12,6 +12,7 @@ struct ContentView: View {
     
     // MARK: - PROPERTIES
     private var largeLanguageModel = SystemLanguageModel.default
+    private var session = LanguageModelSession()
     @State private var response = ""
     
     // MARK: - BODY
@@ -39,7 +40,16 @@ struct ContentView: View {
             Spacer()
             
             Button {
-                
+                Task {
+                    let prompt = "Say Hi in a fun way"
+                    
+                    do {
+                        let replay = try await session.respond(to: prompt)
+                        response = replay.content
+                    } catch {
+                        response = "Failed to get response : \(error.localizedDescription)"
+                    }
+                }
             } label: {
                 Text("Welcome")
                     .font(.largeTitle)
