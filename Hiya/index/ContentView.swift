@@ -10,7 +10,9 @@ import FoundationModels
 
 struct ContentView: View {
     
+    // MARK: - PROPERTIES
     private var largeLanguageModel = SystemLanguageModel.default
+    @State private var response = ""
     
     // MARK: - BODY
     var body: some View {
