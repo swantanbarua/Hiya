@@ -6,16 +6,23 @@
 //
 
 import SwiftUI
+import FoundationModels
 
 struct ContentView: View {
+    
+    private var largeLanguageModel = SystemLanguageModel.default
+    
+    // MARK: - BODY
     var body: some View {
         VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+            switch largeLanguageModel.availability {
+            case .available:
+                Text("Available")
+                
+            case .unavailable:
+                Text("Unavailable")
+            }
         }
-        .padding()
     }
 }
 
