@@ -50,6 +50,7 @@ struct ContentView: View {
             .glassEffect(.regular.interactive())
         }
         .padding()
+        .tint(.purple)
     }
 }
 
