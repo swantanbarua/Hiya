@@ -17,6 +17,8 @@ struct ContentView: View {
     // MARK: - BODY
     var body: some View {
         VStack {
+            Spacer()
+            
             switch largeLanguageModel.availability {
             case .available:
                 Text("Available")
@@ -33,7 +35,21 @@ struct ContentView: View {
             case .unavailable(_):
                 Text("The AI feature is unavailable for an unknown reason")
             }
+            
+            Spacer()
+            
+            Button {
+                
+            } label: {
+                Text("Welcome")
+                    .font(.largeTitle)
+                    .padding()
+            }
+            .buttonStyle(.borderedProminent)
+            .buttonSizing(.flexible)
+            .glassEffect(.regular.interactive())
         }
+        .padding()
     }
 }
 
