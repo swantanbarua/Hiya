@@ -19,8 +19,17 @@ struct ContentView: View {
             case .available:
                 Text("Available")
                 
-            case .unavailable:
-                Text("Unavailable")
+            case .unavailable(.deviceNotEligible):
+                Text("Your device isn't eligible for Apple Intelligence")
+                
+            case .unavailable(.appleIntelligenceNotEnabled):
+                Text("Please enable Apple Intelligence in Settings")
+                
+            case .unavailable(.modelNotReady):
+                Text("The AI model is not ready")
+                
+            case .unavailable(_):
+                Text("The AI feature is unavailable for an unknown reason")
             }
         }
     }
