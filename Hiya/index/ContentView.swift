@@ -25,10 +25,14 @@ struct ContentView: View {
             switch largeLanguageModel.availability {
             case .available:
                 if response.isEmpty {
-                    Text("Tap the button to get a fun response")
-                        .foregroundStyle(.tertiary)
-                        .multilineTextAlignment(.center)
-                        .font(.title)
+                    if isLoading {
+                        ProgressView()
+                    } else {
+                        Text("Tap the button to get a response")
+                            .foregroundStyle(.tertiary)
+                            .multilineTextAlignment(.center)
+                            .font(.title)
+                    }
                 } else {
                     Text(response)
                         .multilineTextAlignment(.center)
