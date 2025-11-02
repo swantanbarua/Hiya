@@ -13,7 +13,9 @@ struct ContentView: View {
     // MARK: - PROPERTIES
     private var largeLanguageModel = SystemLanguageModel.default
     private var session = LanguageModelSession()
+    
     @State private var response = ""
+    @State private var isLoading = false
     
     // MARK: - BODY
     var body: some View {
@@ -51,6 +53,11 @@ struct ContentView: View {
             
             Button {
                 Task {
+                    isLoading = true
+                    defer {
+                        isLoading = false
+                    }
+                    
                     let prompt = "Say Hi in a fun way"
                     
                     do {
