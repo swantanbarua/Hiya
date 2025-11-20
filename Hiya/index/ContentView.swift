@@ -5,6 +5,7 @@
 //  Created by Swantan Barua on 29/10/25.
 //
 
+// MARK: - IMPORTS
 import SwiftUI
 import FoundationModels
 
@@ -28,13 +29,14 @@ struct ContentView: View {
                     if isLoading {
                         ProgressView()
                     } else {
-                        Text("Tap the button to get a response")
+                        Text("Tap the button to get a fun response")
                             .foregroundStyle(.tertiary)
                             .multilineTextAlignment(.center)
                             .font(.title)
                     }
                 } else {
                     Text(response)
+                        .foregroundStyle(.black)
                         .multilineTextAlignment(.center)
                         .font(.largeTitle)
                         .bold()
@@ -58,9 +60,8 @@ struct ContentView: View {
             Button {
                 Task {
                     isLoading = true
-                    defer {
-                        isLoading = false
-                    }
+                    
+                    defer { isLoading = false }
                     
                     let prompt = "Say Hi in a fun way"
                     
@@ -68,7 +69,7 @@ struct ContentView: View {
                         let replay = try await session.respond(to: prompt)
                         response = replay.content
                     } catch {
-                        response = "Failed to get response : \(error.localizedDescription)"
+                        response = "Failed to get response: \(error.localizedDescription)"
                     }
                 }
             } label: {
