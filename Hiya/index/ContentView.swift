@@ -8,6 +8,7 @@
 // MARK: - IMPORTS
 import SwiftUI
 import FoundationModels
+import Foundation
 
 struct ContentView: View {
     
@@ -29,7 +30,7 @@ struct ContentView: View {
                     if isLoading {
                         ProgressView()
                     } else {
-                        Text("Tap the button to get a fun response")
+                        Text(Strings.ContentView.tapToGetFunResponse)
                             .foregroundStyle(.tertiary)
                             .multilineTextAlignment(.center)
                             .font(.title)
@@ -43,16 +44,16 @@ struct ContentView: View {
                 }
                 
             case .unavailable(.deviceNotEligible):
-                Text("Your device isn't eligible for Apple Intelligence")
+                Text(Strings.ContentView.deviceNotEligible)
                 
             case .unavailable(.appleIntelligenceNotEnabled):
-                Text("Please enable Apple Intelligence in Settings")
+                Text(Strings.ContentView.enableAppleIntelligence)
                 
             case .unavailable(.modelNotReady):
-                Text("The AI model is not ready")
+                Text(Strings.ContentView.modelNotReady)
                 
             case .unavailable(_):
-                Text("The AI feature is unavailable for an unknown reason")
+                Text(Strings.ContentView.aiUnavailableUnknown)
             }
             
             Spacer()
@@ -63,17 +64,17 @@ struct ContentView: View {
                     
                     defer { isLoading = false }
                     
-                    let prompt = "Say Hi in a fun way"
+                    let prompt = Strings.ContentView.sayHiPrompt
                     
                     do {
                         let replay = try await session.respond(to: prompt)
                         response = replay.content
                     } catch {
-                        response = "Failed to get response: \(error.localizedDescription)"
+                        response = Strings.ContentView.failedToGetResponsePrefix + error.localizedDescription
                     }
                 }
             } label: {
-                Text("Welcome")
+                Text(Strings.ContentView.welcomeButtonTitle)
                     .font(.largeTitle)
                     .padding()
             }
