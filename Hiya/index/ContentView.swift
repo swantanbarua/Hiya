@@ -8,15 +8,14 @@
 // MARK: - IMPORTS
 import SwiftUI
 import FoundationModels
-import Foundation
 
 struct ContentView: View {
     
     // MARK: - PROPERTIES
     private var largeLanguageModel = SystemLanguageModel.default
-    private var session = LanguageModelSession()
+    var session = LanguageModelSession()
     
-    @State private var response = ""
+    @State var response = ""
     @State private var isLoading = false
     
     // MARK: - BODY
@@ -58,29 +57,11 @@ struct ContentView: View {
             
             Spacer()
             
-            Button {
-                Task {
-                    isLoading = true
-                    
-                    defer { isLoading = false }
-                    
-                    let prompt = Strings.ContentView.sayHiPrompt
-                    
-                    do {
-                        let replay = try await session.respond(to: prompt)
-                        response = replay.content
-                    } catch {
-                        response = Strings.ContentView.failedToGetResponsePrefix + error.localizedDescription
-                    }
-                }
-            } label: {
-                Text(Strings.ContentView.welcomeButtonTitle)
-                    .font(.largeTitle)
-                    .padding()
-            }
-            .buttonStyle(.borderedProminent)
-            .buttonSizing(.flexible)
-            .glassEffect(.regular.interactive())
+            GenerateResponseButton(
+                isLoading: isLoading,
+                response: response,
+                session: session
+            )
         }
         .padding()
         .tint(.purple)
