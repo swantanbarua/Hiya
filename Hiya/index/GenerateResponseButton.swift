@@ -12,8 +12,8 @@ import FoundationModels
 struct GenerateResponseButton: View {
     
     // MARK: - PROPERTIES
-    @State var isLoading: Bool
-    @State var response: String
+    @Binding var isLoading: Bool
+    @Binding var response: String
     var session: LanguageModelSession
     
     // MARK: - BODY
@@ -46,8 +46,8 @@ struct GenerateResponseButton: View {
 
 #Preview {
     GenerateResponseButton(
-        isLoading: false,
-        response: "",
+        isLoading: .constant(false),
+        response: .constant(""),
         session: LanguageModelSession()
     )
 }

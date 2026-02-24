@@ -58,8 +58,8 @@ struct ContentView: View {
             Spacer()
             
             GenerateResponseButton(
-                isLoading: isLoading,
-                response: response,
+                isLoading: $isLoading,
+                response: $response,
                 session: session
             )
         }
