@@ -35,11 +35,11 @@ struct ContentView: View {
                         )
                     }
                 } else {
-                    Text(response)
-                        .foregroundStyle(.black)
-                        .multilineTextAlignment(.center)
-                        .font(.largeTitle)
-                        .bold()
+                    ResponseTextView(
+                        text: response,
+                        foregroundStyle: .black
+                    )
+                    .font(.largeTitle)
                 }
                 
             case .unavailable(.deviceNotEligible):
