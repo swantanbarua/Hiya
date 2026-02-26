@@ -29,10 +29,10 @@ struct ContentView: View {
                     if isLoading {
                         ProgressView()
                     } else {
-                        Text(Strings.ContentView.tapToGetFunResponse)
-                            .foregroundStyle(.tertiary)
-                            .multilineTextAlignment(.center)
-                            .font(.title)
+                        ResponseTextView(
+                            text: Strings.ContentView.tapToGetFunResponse,
+                            foregroundStyle: .tertiary
+                        )
                     }
                 } else {
                     Text(response)
